@@ -21,7 +21,7 @@ document.addEventListener('keypress', function(LISTEN)
 		clicked_time = Date.now();
 		reaction_time = (clicked_time - loaded_time) / 1000;
 		difference_time = (clicked_time - created_time) / 1000;
-		obj.table.push(reaction_time);
+		obj.table.push(' ' + reaction_time);
 		for (const prop in obj)
 		{
 			document.getElementById('print_all_times').innerHTML = `obj.${prop} = ${obj[prop]}`;
