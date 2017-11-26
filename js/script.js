@@ -1,4 +1,9 @@
 var clicked_time; var created_time; var loaded_time; var reaction_time; var difference_time;
+var clicked_time;
+var created_time;
+var loaded_time;
+var reaction_time;
+var difference_time;
 var audio_file = 'audio/1.mp3';
 var audio_playing = false;
 var obj =
