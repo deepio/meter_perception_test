@@ -9,15 +9,18 @@ var obj =
 {
 	table: []
 };
+document.getElementById('send').style.display="none";
 
 function MAKE_A_SOUND(file)
 {
 	var audio = new Audio(file);
 	audio.play();
 	loaded_time = Date.now();
-	audio.addEventListener("ended", function(){
+	audio.addEventListener("ended", function()
+	{
 	     audio.currentTime = 0;
 	     audio_playing = false;
+			 document.getElementById('send').style.display="block";
 	});
 }
 
