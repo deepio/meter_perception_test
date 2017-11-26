@@ -1,4 +1,3 @@
-var clicked_time; var created_time; var loaded_time; var reaction_time; var difference_time;
 var clicked_time;
 var created_time;
 var loaded_time;
