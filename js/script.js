@@ -44,3 +44,6 @@ document.addEventListener('keypress', function(LISTEN)
 	}
 	else {}
 });
+
+
+// [TODO] Send data to firebase when experiment trial is over.
