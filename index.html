@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 	<script>
-	  // Initialize Firebase
+
 	  firebase.initializeApp(config);
 
     // GRAB TEXT FROM DATABASE AND POPULATE PAGE IN REAL TIME. :)
@@ -21,9 +21,11 @@
 
 <body>
 
+	<h1 id="bigOne"></h1>
 	<p>When you're ready, press the `enter` key.</p>
 	<p>Click on the space bar the moment you see an object below and your reaction time will be posted below: </p>
 
+	<p id="track_name"></p>
 	<p id="print_all_times"></p>
 	<p id="print_latest_time"></p>
 	<script src="js/script.js"></script>
