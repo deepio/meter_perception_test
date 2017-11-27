@@ -1,9 +1,7 @@
 var clicked_time;
-var created_time;
 var loaded_time;
 var reaction_time;
-var difference_time;
-var audio_file = 'audio/1.mp3';
+var trials = 0;
 var audio_tree = ['audio/1.mp3', 'audio/2.mp3', 'audio/3.mp3'];
 var audio_playing = false;
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
@@ -11,6 +9,7 @@ var obj =
 {
 	table: []
 };
+
 document.getElementById('send').style.display="none";
 
 function MAKE_A_SOUND(file)
@@ -22,7 +21,8 @@ function MAKE_A_SOUND(file)
 	{
 	     audio.currentTime = 0;
 	     audio_playing = false;
-			 document.getElementById('send').style.display="block";
+			 trials ++;
+			 if ( trials == audio_tree.length ) {document.getElementById('send').style.display="block";}
 	});
 }
 
@@ -64,10 +64,9 @@ document.addEventListener('keypress', function(LISTEN)
 		clicked_time = Date.now();
 		reaction_time = (clicked_time - loaded_time) / 1000;
 		obj.table.push(' ' + reaction_time);
-		for (const prop in obj)
+		for (var prop in obj)
 		{
 			document.getElementById('print_all_times').innerHTML = `obj.${prop} = ${obj[prop]}`;
-			// document.getElementById('print_latest_time').innerHTML = difference_time;
 		}
 	}
 	else {}
