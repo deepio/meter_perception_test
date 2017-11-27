@@ -6,16 +6,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<meta charset="UTF-8">
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-	<script>
-
-	  firebase.initializeApp(config);
-
-    // GRAB TEXT FROM DATABASE AND POPULATE PAGE IN REAL TIME. :)
-		var times = document.getElementById( 'bigOne' );
-		var dbRef = firebase.database().ref().child('text');
-		dbRef.on( 'value', snap => document.getElementById( 'bigOne' ).innerText = snap.val() );
-
-	</script>
+	<script src="js/creds.js"></script>
 
 </head>
 
