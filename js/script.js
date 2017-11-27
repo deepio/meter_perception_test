@@ -5,9 +5,14 @@ var current_trial = 0;
 var audio_tree = ['audio/1.mp3', 'audio/2.mp3', 'audio/3.mp3'];
 var audio_playing = false;
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
-var trial = { rhythm_table: [] };
-
-document.getElementById('send').style.display="none";
+var database = firebase.database();
+var ref = database.ref('experiment_trials');
+var trial = {
+	id: [],
+	rhythm_table_1: [],
+	rhythm_table_2: [],
+	rhythm_table_3: []
+}
 
 function MAKE_A_SOUND(file)
 {
@@ -42,6 +47,15 @@ function RANDOMIZE_FILE_ORDER(file_list)
 	return [output];
 }
 
+
+document.getElementById('send').addEventListener('click', () =>
+{
+    ref.push(trial);
+		document.getElementById('send').style.display="none";
+		document.getElementById('print_all_times').style.display="none";
+		window.location.reload();
+});
+
 document.addEventListener('keypress', function(LISTEN)
 {
 	if ( (LISTEN.keyCode == 13 || LISTEN.which == 13) && audio_playing === false )
@@ -52,17 +66,31 @@ document.addEventListener('keypress', function(LISTEN)
 		MAKE_A_SOUND(audio_file);
 		audio_playing = true;
 		random_file.splice(0, 1);
-		trial.rhythm_table.push(audio_file);
+		// trial.rhythm_table.push(' ' + audio_file);
+		trial.id.push(' ' + audio_file);
 	}
 	else if ( (LISTEN.keyCode == 32 || LISTEN.which == 32) && audio_playing === true )
 	{
 		trial_start_time = Date.now();
 		reaction_time = (trial_start_time - audio_loaded_time) / 1000;
-		trial.rhythm_table.push(' ' + reaction_time);
-		for (var prop in trial)
+
+		if ( current_trial == 0 )
 		{
-			document.getElementById('print_all_times').innerHTML = `trial.${prop} = ${trial[prop]}`;
+			trial.rhythm_table_1.push(' ' + reaction_time);
 		}
+		else if ( current_trial == 1 )
+		{
+			trial.rhythm_table_2.push(' ' + reaction_time);
+		}
+		else if ( current_trial == 2 )
+		{
+			trial.rhythm_table_3.push(' ' + reaction_time);
+		}
+		else {}
+
 	}
 	else {}
 });
+
+// Hide button until experiment is over.
+// document.getElementById('send').style.display="none";
