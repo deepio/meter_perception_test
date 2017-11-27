@@ -7,8 +7,9 @@ var audio_playing = false;
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
 var database = firebase.database();
 var ref = database.ref('experiment_trials');
+
 var trial = {
-	id: [],
+	track_id: [],
 	rhythm_table_1: [],
 	rhythm_table_2: [],
 	rhythm_table_3: []
@@ -47,13 +48,15 @@ function RANDOMIZE_FILE_ORDER(file_list)
 	return [output];
 }
 
-
 document.getElementById('send').addEventListener('click', () =>
 {
-    ref.push(trial);
-		document.getElementById('send').style.display="none";
-		document.getElementById('print_all_times').style.display="none";
-		window.location.reload();
+	// var a = document.getElementById('initials');
+	// trial.initials.push(a);
+	console.log(trial);
+	ref.push(trial);
+	document.getElementById('send').style.display="none";
+	document.getElementById('print_all_times').style.display="none";
+	window.location.reload();
 });
 
 document.addEventListener('keypress', function(LISTEN)
@@ -66,8 +69,7 @@ document.addEventListener('keypress', function(LISTEN)
 		MAKE_A_SOUND(audio_file);
 		audio_playing = true;
 		random_file.splice(0, 1);
-		// trial.rhythm_table.push(' ' + audio_file);
-		trial.id.push(' ' + audio_file);
+		trial.track_id.push(' ' + audio_file);
 	}
 	else if ( (LISTEN.keyCode == 32 || LISTEN.which == 32) && audio_playing === true )
 	{
