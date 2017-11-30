@@ -5,9 +5,6 @@ var current_trial = 0;
 var audio_tree = ['audio/1.mp3', 'audio/2.mp3', 'audio/3.mp3'];
 var audio_playing = false;
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
-var database = firebase.database();
-var ref = database.ref('experiment_trials');
-
 var trial = {
 	track_id: [],
 	rhythm_table: [[], [], []]
@@ -49,11 +46,11 @@ function RANDOMIZE_FILE_ORDER(file_list)
 document.getElementById('send').addEventListener('click', () =>
 {
 	// var a = document.getElementById('initials');
-	// trial.initials.push(a);
-	console.log(trial);
+	// trial.initials.push( a );
+	// console.log(trial);
 	ref.push(trial);
-	document.getElementById('send').style.display="none";
-	document.getElementById('print_all_times').style.display="none";
+	// document.getElementById('send').style.display="none";
+	// document.getElementById('print_all_times').style.display="none";
 	window.location.reload();
 });
 
