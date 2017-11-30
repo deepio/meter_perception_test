@@ -10,9 +10,7 @@ var ref = database.ref('experiment_trials');
 
 var trial = {
 	track_id: [],
-	rhythm_table_1: [],
-	rhythm_table_2: [],
-	rhythm_table_3: []
+	rhythm_table: [[], [], []]
 }
 
 function MAKE_A_SOUND(file)
@@ -78,15 +76,15 @@ document.addEventListener('keypress', function(LISTEN)
 
 		if ( current_trial == 0 )
 		{
-			trial.rhythm_table_1.push(' ' + reaction_time);
+			trial.rhythm_table[0].push(' ' + reaction_time);
 		}
 		else if ( current_trial == 1 )
 		{
-			trial.rhythm_table_2.push(' ' + reaction_time);
+			trial.rhythm_table[1].push(' ' + reaction_time);
 		}
 		else if ( current_trial == 2 )
 		{
-			trial.rhythm_table_3.push(' ' + reaction_time);
+			trial.rhythm_table[2].push(' ' + reaction_time);
 		}
 		else {}
 
