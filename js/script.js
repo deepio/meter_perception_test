@@ -2,12 +2,12 @@ var trial_start_time;
 var audio_loaded_time;
 var reaction_time;
 var current_trial = 0;
-var audio_tree = ['audio/1.mp3', 'audio/2.mp3', 'audio/3.mp3'];
 var audio_playing = false;
+var audio_tree = ['audio/1a.mp3', 'audio/1b.mp3', 'audio/2a.mp3', 'audio/2b.mp3', 'audio/3a.mp3', 'audio/3b.mp3', 'audio/4a.mp3', 'audio/4b.mp3', 'audio/5a.mp3', 'audio/5b.mp3', 'audio/6a.mp3', 'audio/6b.mp3', 'audio/7a.mp3', 'audio/7b.mp3', 'audio/8a.mp3', 'audio/8b.mp3', 'audio/9a.mp3', 'audio/9b.mp3', 'audio/10a.mp3', 'audio/10b.mp3', 'audio/11a.mp3', 'audio/11b.mp3', 'audio/12a.mp3', 'audio/12b.mp3'];
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
 var trial = {
 	track_id: [],
-	rhythm_table: [[], [], []]
+	rhythm_table: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []
 }
 
 function MAKE_A_SOUND(file)
@@ -82,6 +82,94 @@ document.addEventListener('keypress', function(LISTEN)
 		else if ( current_trial == 2 )
 		{
 			trial.rhythm_table[2].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 3 )
+		{
+			trial.rhythm_table[3].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 4 )
+		{
+			trial.rhythm_table[4].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 5 )
+		{
+			trial.rhythm_table[5].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 6 )
+		{
+			trial.rhythm_table[6].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 7 )
+		{
+			trial.rhythm_table[7].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 8 )
+		{
+			trial.rhythm_table[8].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 9 )
+		{
+			trial.rhythm_table[9].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 10 )
+		{
+			trial.rhythm_table[10].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 11 )
+		{
+			trial.rhythm_table[11].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 12 )
+		{
+			trial.rhythm_table[12].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 13 )
+		{
+			trial.rhythm_table[13].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 14 )
+		{
+			trial.rhythm_table[14].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 15 )
+		{
+			trial.rhythm_table[15].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 16 )
+		{
+			trial.rhythm_table[16].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 17 )
+		{
+			trial.rhythm_table[17].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 18 )
+		{
+			trial.rhythm_table[18].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 19 )
+		{
+			trial.rhythm_table[19].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 20 )
+		{
+			trial.rhythm_table[20].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 21 )
+		{
+			trial.rhythm_table[21].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 22 )
+		{
+			trial.rhythm_table[22].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 23 )
+		{
+			trial.rhythm_table[23].push(' ' + reaction_time);
+		}
+		else if ( current_trial == 24 )
+		{
+			trial.rhythm_table[24].push(' ' + reaction_time);
 		}
 		else {}
 
