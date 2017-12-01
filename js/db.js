@@ -13,14 +13,19 @@ function gotData(data)
 	var keys = Object.keys(d); 					// Array of the keys in the database
 	for (var i = 0; i < keys.length; i++ )
 	{
-		var k = keys[i];
-		var track_order = d[k].track_id;
-		var table = d[k].rhythm_table;
-		for (var j = 0; j < track_order.length; j++)
-		{
-			var li = createElement('li', track_order[j] + '<br>' + table[j]);
-			li.parent('scorelist');
-		}
+		var trial_key = keys[i];
+		var track_order = d[trial_key].track_id;
+		var table = d[trial_key].rhythm_table;
+
+		console.log(trial_key);
+		console.log(track_order);
+		console.log(table);
+
+		
+		// for (var j = 0; j < track_order.length; j++)
+		// {
+		// 	console.log("test");
+		// }
 	}
 }
 
@@ -29,3 +34,10 @@ function errData(err)
 	console.log('Error!');
 	console.log(err);
 }
+
+
+
+
+// var li = createElement('li', track_order[j] + '<br>' + table[j]);
+// var li = createElement('li', table[j]);
+// li.parent('messages');
