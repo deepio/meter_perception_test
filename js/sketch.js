@@ -1,10 +1,6 @@
 function setup()
 {
 
-	// GRAB TITLE
-	var title = firebase.database().ref().child('text');
-	title.on( 'value', snap => document.getElementById( 'title' ).innerText = snap.val() );
-
 }
 
 function draw()

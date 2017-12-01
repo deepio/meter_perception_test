@@ -7,7 +7,7 @@ var audio_tree = ['audio/1a.mp3', 'audio/1b.mp3', 'audio/2a.mp3', 'audio/2b.mp3'
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
 var trial = {
 	track_id: [],
-	rhythm_table: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []
+	rhythm_table: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 }
 
 function MAKE_A_SOUND(file)
@@ -48,6 +48,7 @@ document.getElementById('send').addEventListener('click', () =>
 	// var a = document.getElementById('initials');
 	// trial.initials.push( a );
 	// console.log(trial);
+	var ref = firebase.database().ref('experiment_trials');
 	ref.push(trial);
 	// document.getElementById('send').style.display="none";
 	// document.getElementById('print_all_times').style.display="none";
