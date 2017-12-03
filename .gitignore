@@ -1,0 +1,10 @@
+.firebaserc
+functions/*
+node_modules/*
+*.lock
+*.json
+*.rules
+audio/mp3/*
+audio/backup
+
+*.DS_Store
