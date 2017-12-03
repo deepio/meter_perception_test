@@ -4,10 +4,15 @@
 
 	<title>My Experiment</title>
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- <script src="js/db.js"></script> -->
 	<script src="js/sketch.js"></script>
 
@@ -15,22 +20,29 @@
 
 <body>
 
+<div class="container">
 	<h1 id="title"></h1>
-	<p>When you're ready, press the `enter` key.</p>
-	<p>Click on the space bar the moment you see an object below and your reaction time will be posted below: </p>
+	<p>When you're ready, press the `enter` key, this will start the audio.</p>
+	<p>While listening to the audio, tap on the space bar to the rhythm of what you hear.</p>
 
-	<div id="myProgress">
-  	<div id="myBar"></div>
-	</div>
+	<div class="progress">
+   <div class="progress-bar progress-bar-striped active" role="progressbar"
+   aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" id="p">
+     0%
+   </div>
+ 	</div>
 
-	<input type="button" value="send results" id="send"/>
-	<input type="text" value="Your Initials" id="initials"/>
-	<script src="js/script.js"></script>
+		<input type="button" value="+1" id="a"/>
+		<input type="button" value="send results" id="send"/>
+		<input type="text" value="Your Initials" id="name"/>
+		<script src="js/script.js"></script>
 
 	<ol id="message-title">
 		<ol id="message">
 		</ol>
 	</ol>
+
+</div>
 
 </body>
 </html>

@@ -6,6 +6,7 @@ var audio_playing = false;
 var audio_tree = ['audio/1a.mp3', 'audio/1b.mp3', 'audio/2a.mp3', 'audio/2b.mp3', 'audio/3a.mp3', 'audio/3b.mp3', 'audio/4a.mp3', 'audio/4b.mp3', 'audio/5a.mp3', 'audio/5b.mp3', 'audio/6a.mp3', 'audio/6b.mp3', 'audio/7a.mp3', 'audio/7b.mp3', 'audio/8a.mp3', 'audio/8b.mp3', 'audio/9a.mp3', 'audio/9b.mp3', 'audio/10a.mp3', 'audio/10b.mp3', 'audio/11a.mp3', 'audio/11b.mp3', 'audio/12a.mp3', 'audio/12b.mp3'];
 var random_file = RANDOMIZE_FILE_ORDER(audio_tree)[0];
 var trial = {
+	name: [],
 	track_id: [],
 	rhythm_table: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 }
@@ -21,6 +22,8 @@ function MAKE_A_SOUND(file)
 	     audio_playing = false;
 			 current_trial ++;
 			 if ( current_trial == audio_tree.length ) {document.getElementById('send').style.display="block";}
+			 progress_bar = roundTo( ((current_trial/24) * 100), 2);
+			 $('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
 	});
 }
 
@@ -43,15 +46,18 @@ function RANDOMIZE_FILE_ORDER(file_list)
 	return [output];
 }
 
+document.getElementById('a').addEventListener('click', () =>
+{
+	current_trial = current_trial + 1;
+	console.log('yup.');
+	progress_bar = roundTo( ((current_trial/24) * 100), 2);
+	$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+});
+
 document.getElementById('send').addEventListener('click', () =>
 {
-	// var a = document.getElementById('initials');
-	// trial.initials.push( a );
-	// console.log(trial);
 	var ref = firebase.database().ref('experiment_trials');
 	ref.push(trial);
-	// document.getElementById('send').style.display="none";
-	// document.getElementById('print_all_times').style.display="none";
 	window.location.reload();
 });
 
@@ -173,10 +179,20 @@ document.addEventListener('keypress', function(LISTEN)
 			trial.rhythm_table[24].push(' ' + reaction_time);
 		}
 		else {}
-
 	}
 	else {}
 });
+
+function roundTo(n, digits) {
+     if (digits === undefined) {
+       digits = 0;
+     }
+
+     var multiplicator = Math.pow(10, digits);
+     n = parseFloat((n * multiplicator).toFixed(11));
+     var test =(Math.round(n) / multiplicator);
+     return +(test.toFixed(digits));
+   }
 
 // Hide button until experiment is over.
 // document.getElementById('send').style.display="none";
