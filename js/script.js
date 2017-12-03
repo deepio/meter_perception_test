@@ -70,7 +70,14 @@ document.getElementById('a').addEventListener('click', () =>
 	current_trial = current_trial + 1;
 	console.log('yup.');
 	progress_bar = roundTo( ((current_trial/24) * 100), 2);
-	$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+	if ( current_trial >= '24' )
+	{
+		$('#p').attr('aria-valuenow', '100' ).css('width', '100%').text('Complete').addClass('progress-bar-success');
+	}
+	else
+	{
+		$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+	}
 });
 
 document.getElementById('send').addEventListener('click', () =>
