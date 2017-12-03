@@ -30,20 +30,36 @@ var trial = {
 	rhythm_table: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 }
 
+
 function MAKE_A_SOUND(file)
 {
 	var audio = new Audio(file);
 	audio.play();
 	audio_loaded_time = Date.now();
+	document.getElementById('audio_status').style.display="block";
 	audio.addEventListener("ended", function()
 	{
 	     audio.currentTime = 0;
 	     audio_playing = false;
 			 current_trial ++;
 			 if ( current_trial == audio_tree.length ) {document.getElementById('send').style.display="block";}
-			 progress_bar = roundTo( ((current_trial/24) * 100), 2);
-			 $('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+			 document.getElementById('audio_status').style.display="none";
+			 progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
+			 // $('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+			 PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
 	});
+}
+
+function PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar)
+{
+	if ( current_trial >= '24' )
+	{
+		$('#p').attr('aria-valuenow', '100' ).css('width', '100%').text('Complete').addClass('progress-bar-success');
+	}
+	else
+	{
+		$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+	}
 }
 
 function RANDOMIZE_FILE_ORDER(file_list)
@@ -65,20 +81,17 @@ function RANDOMIZE_FILE_ORDER(file_list)
 	return [output];
 }
 
-document.getElementById('a').addEventListener('click', () =>
-{
-	current_trial = current_trial + 10;
-	console.log('yup.');
-	progress_bar = roundTo( ((current_trial/24) * 100), 2);
-	if ( current_trial >= '24' )
-	{
-		$('#p').attr('aria-valuenow', '100' ).css('width', '100%').text('Complete').addClass('progress-bar-success');
-	}
-	else
-	{
-		$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
-	}
-});
+function ROUND_TO(n, digits) {
+     if (digits === undefined) {
+       digits = 0;
+     }
+
+     var multiplicator = Math.pow(10, digits);
+     n = parseFloat((n * multiplicator).toFixed(11));
+     var test =(Math.round(n) / multiplicator);
+     return +(test.toFixed(digits));
+   }
+
 
 document.getElementById('send').addEventListener('click', () =>
 {
@@ -210,16 +223,14 @@ document.addEventListener('keypress', function(LISTEN)
 	else {}
 });
 
-function roundTo(n, digits) {
-     if (digits === undefined) {
-       digits = 0;
-     }
-
-     var multiplicator = Math.pow(10, digits);
-     n = parseFloat((n * multiplicator).toFixed(11));
-     var test =(Math.round(n) / multiplicator);
-     return +(test.toFixed(digits));
-   }
-
 // Hide button until experiment is over.
-// document.getElementById('send').style.display="none";
+document.getElementById('send').style.display="none";
+document.getElementById('audio_status').style.display="none";
+
+document.getElementById('a').addEventListener('click', () =>
+{
+	current_trial = current_trial + 10;
+	console.log('yup.');
+	progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
+	PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
+});
