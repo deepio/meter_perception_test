@@ -224,9 +224,10 @@ document.addEventListener('keypress', function(LISTEN)
 });
 
 // Hide button until experiment is over.
-document.getElementById('send').style.display="none";
+// document.getElementById('send').style.display="none";
 document.getElementById('audio_status').style.display="none";
 
+// Finish Early button
 document.getElementById('a').addEventListener('click', () =>
 {
 	current_trial = current_trial + 10;
