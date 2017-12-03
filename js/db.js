@@ -31,11 +31,6 @@ function gotData(data)
 		console.log(track_order);
 		console.log(table);
 
-		
-		// for (var j = 0; j < track_order.length; j++)
-		// {
-		// 	console.log("test");
-		// }
 	}
 }
 
@@ -44,9 +39,6 @@ function errData(err)
 	console.log('Error!');
 	console.log(err);
 }
-
-
-
 
 // var li = createElement('li', track_order[j] + '<br>' + table[j]);
 // var li = createElement('li', table[j]);

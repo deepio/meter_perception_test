@@ -67,7 +67,7 @@ function RANDOMIZE_FILE_ORDER(file_list)
 
 document.getElementById('a').addEventListener('click', () =>
 {
-	current_trial = current_trial + 1;
+	current_trial = current_trial + 10;
 	console.log('yup.');
 	progress_bar = roundTo( ((current_trial/24) * 100), 2);
 	if ( current_trial >= '24' )
