@@ -1,3 +1,13 @@
+// INITIALIZE
+var config = {
+	apiKey: "AIzaSyB3DHDj-41nfcUUHY1bSI7h9eBF_1Mlbak",
+	authDomain: "meter-perception-experiment.firebaseapp.com",
+	databaseURL: "https://meter-perception-experiment.firebaseio.com",
+	projectId: "meter-perception-experiment",
+	storageBucket: "",
+	messagingSenderId: "837214283382"
+};
+firebase.initializeApp(config);
 
 // GRAB TITLE
 var title = firebase.database().ref().child('text');

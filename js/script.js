@@ -1,3 +1,22 @@
+// [TODO] Divide code into more files ?
+
+// INITIALIZE
+var config = {
+	apiKey: "AIzaSyB3DHDj-41nfcUUHY1bSI7h9eBF_1Mlbak",
+	authDomain: "meter-perception-experiment.firebaseapp.com",
+	databaseURL: "https://meter-perception-experiment.firebaseio.com",
+	projectId: "meter-perception-experiment",
+	storageBucket: "",
+	messagingSenderId: "837214283382"
+};
+firebase.initializeApp(config);
+
+// GRAB TITLE
+// firebase.database.enableLogging(true);
+var title = firebase.database().ref().child('text');
+title.on( 'value', snap => document.getElementById( 'title' ).innerText = snap.val() );
+
+
 var trial_start_time;
 var audio_loaded_time;
 var reaction_time;
@@ -56,6 +75,7 @@ document.getElementById('a').addEventListener('click', () =>
 
 document.getElementById('send').addEventListener('click', () =>
 {
+	trial.name.push( document.getElementById('name').value );
 	var ref = firebase.database().ref('experiment_trials');
 	ref.push(trial);
 	window.location.reload();
