@@ -1,6 +1,6 @@
-// [TODO] Divide code into more files ?
-
-// INITIALIZE
+////////////////////////
+// INITIALIZE FIREBASE
+////////////////////////
 var config = {
 	apiKey: "AIzaSyB3DHDj-41nfcUUHY1bSI7h9eBF_1Mlbak",
 	authDomain: "meter-perception-experiment.firebaseapp.com",
@@ -11,12 +11,15 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// GRAB TITLE
+// Grab Title
 // firebase.database.enableLogging(true);
 var title = firebase.database().ref().child('text');
 title.on( 'value', snap => document.getElementById( 'title' ).innerText = snap.val() );
 
 
+////////////////////////
+// SET EXPERIMENT GLOBAL VARIABLES
+////////////////////////
 var trial_start_time;
 var audio_loaded_time;
 var reaction_time;
@@ -31,37 +34,9 @@ var trial = {
 }
 
 
-function MAKE_A_SOUND(file)
-{
-	var audio = new Audio(file);
-	audio.play();
-	audio_loaded_time = Date.now();
-	document.getElementById('audio_status').style.display="block";
-	audio.addEventListener("ended", function()
-	{
-	     audio.currentTime = 0;
-	     audio_playing = false;
-			 current_trial ++;
-			 if ( current_trial == audio_tree.length ) {document.getElementById('send').style.display="block";}
-			 document.getElementById('audio_status').style.display="none";
-			 progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
-			 // $('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
-			 PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
-	});
-}
-
-function PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar)
-{
-	if ( current_trial >= '24' )
-	{
-		$('#p').attr('aria-valuenow', '100' ).css('width', '100%').text('Complete').addClass('progress-bar-success');
-	}
-	else
-	{
-		$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
-	}
-}
-
+////////////////////////
+// FUNCTIONS
+////////////////////////
 function RANDOMIZE_FILE_ORDER(file_list)
 {
 	var output = [];
@@ -92,7 +67,43 @@ function ROUND_TO(n, digits) {
      return +(test.toFixed(digits));
    }
 
+function MAKE_A_SOUND(file)
+{
+	var audio = new Audio(file);
+	audio_loaded_time = Date.now();
+	audio.play();
+	document.getElementById('audio_status').style.display="block";
+	audio.addEventListener("ended", function()
+	{
+	     audio.currentTime = 0;
+	     audio_playing = false;
+			 current_trial ++;
+			 if ( current_trial == audio_tree.length )
+			 {
+				 document.getElementById('send').style.display="block";
+				 document.getElementById('name').style.display="block";
+			 }
+			 document.getElementById('audio_status').style.display="none";
+			 progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
+			 PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
+	});
+}
 
+function PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar)
+{
+	if ( current_trial >= '24' )
+	{
+		$('#p').attr('aria-valuenow', '100' ).css('width', '100%').text('Complete').addClass('progress-bar-success');
+	}
+	else
+	{
+		$('#p').attr('aria-valuenow', progress_bar ).css('width', progress_bar+'%').text(progress_bar +'%');
+	}
+}
+
+////////////////////////
+// SET LISTENERS
+////////////////////////
 document.getElementById('send').addEventListener('click', () =>
 {
 	trial.name.push( document.getElementById('name').value );
@@ -223,15 +234,21 @@ document.addEventListener('keypress', function(LISTEN)
 	else {}
 });
 
-// Hide button until experiment is over.
-// document.getElementById('send').style.display="none";
-document.getElementById('audio_status').style.display="none";
-
 // Finish Early button
-document.getElementById('a').addEventListener('click', () =>
-{
-	current_trial = current_trial + 10;
-	console.log('yup.');
-	progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
-	PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
-});
+// document.getElementById('a').addEventListener('click', () =>
+// {
+// 	current_trial = current_trial + 23;
+// 	console.log('yup.');
+// 	progress_bar = ROUND_TO( ((current_trial/24) * 100), 2);
+// 	PROGRESS_BAR_STATUS_CHECK(current_trial, progress_bar);
+// 	if ( current_trial >= audio_tree.length )
+// 	{
+// 		document.getElementById('send').style.display="block";
+// 		document.getElementById('name').style.display="block";
+// 	}
+// });
+
+// Hide button until experiment is over.
+document.getElementById('send').style.display="none";
+document.getElementById('audio_status').style.display="none";
+document.getElementById('name').style.display="none";
